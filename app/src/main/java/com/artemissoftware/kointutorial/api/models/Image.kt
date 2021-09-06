@@ -1,6 +1,6 @@
 package com.artemissoftware.kointutorial.api.models
 
-class Image (
+data class Image (
 
     val medium: String,
     val original: String
