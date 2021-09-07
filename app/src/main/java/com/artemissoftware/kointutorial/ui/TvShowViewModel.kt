@@ -16,11 +16,14 @@ class TvShowViewModel constructor(private val repository: TvShowRepository) : Vi
         get() = _response
 
     init {
-        //--getAllTvShows()
+        getAllTvShows()
     }
 
     private fun getAllTvShows() = viewModelScope.launch {
 
+        repository.getTvShows().let { response ->
+
+        }
     }
 
 
