@@ -3,8 +3,10 @@ package com.artemissoftware.kointutorial.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.artemissoftware.kointutorial.api.models.TvShow
 import com.artemissoftware.kointutorial.repository.TvShowRepository
+import kotlinx.coroutines.launch
 
 class TvShowViewModel constructor(private val repository: TvShowRepository) : ViewModel() {
 
@@ -16,6 +18,11 @@ class TvShowViewModel constructor(private val repository: TvShowRepository) : Vi
     init {
         //--getAllTvShows()
     }
+
+    private fun getAllTvShows() = viewModelScope.launch {
+
+    }
+
 
 //    private fun getAllTvShows() = viewModelScope.launch {
 //        repository.getTvShows().let {response ->
