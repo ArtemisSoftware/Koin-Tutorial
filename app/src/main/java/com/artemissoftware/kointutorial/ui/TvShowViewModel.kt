@@ -14,7 +14,7 @@ class TvShowViewModel constructor(private val repository: TvShowRepository) : Vi
         get() = _response
 
     init {
-        getAllTvShows()
+        //--getAllTvShows()
     }
 
 //    private fun getAllTvShows() = viewModelScope.launch {
@@ -31,3 +31,16 @@ class TvShowViewModel constructor(private val repository: TvShowRepository) : Vi
 
 
 }
+
+//private fun fetchUsers() {
+//    viewModelScope.launch {
+//        _users.postValue(Resource.loading(null))
+//        if (networkHelper.isNetworkConnected()) {
+//            mainRepository.getUsers().let {
+//                if (it.isSuccessful) {
+//                    _users.postValue(Resource.success(it.body()))
+//                } else _users.postValue(Resource.error(it.errorBody().toString(), null))
+//            }
+//        } else _users.postValue(Resource.error("No internet connection", null))
+//    }
+//}
