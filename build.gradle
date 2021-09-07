@@ -8,7 +8,9 @@ buildscript {
         room_version = "2.3.0-beta03"
 
         koin_version = "3.1.2"
+
         retrofit_version = "2.9.0"
+        okhttp3_version = "4.9.1"
     }
 
 
