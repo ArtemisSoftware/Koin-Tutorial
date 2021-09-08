@@ -22,7 +22,7 @@ class TvShowViewModel constructor(private val repository: TvShowRepository) : Vi
     private fun getAllTvShows() = viewModelScope.launch {
 
         repository.getTvShows().let { response ->
-
+            _response.postValue(response.body())
         }
     }
 

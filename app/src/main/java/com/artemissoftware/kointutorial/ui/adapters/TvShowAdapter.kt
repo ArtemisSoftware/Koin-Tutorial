@@ -33,7 +33,7 @@ class TvShowAdapter : ListAdapter<TvShow, TvShowAdapter.TvShowViewHolder>(TvShow
             itemView.txt_title.text = tvShow.name
             itemView.img_poster.load(tvShow.image.original) {
                 crossfade(true)
-                crossfade(5000)
+                crossfade(2000)
             }
         }
     }
