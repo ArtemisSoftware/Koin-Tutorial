@@ -27,8 +27,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:text="TextViewTextViewTextViewTextViewTextViewTextView1111"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="18sp"
+            android:autoSizeStepGranularity="2sp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
