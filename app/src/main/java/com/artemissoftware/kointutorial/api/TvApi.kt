@@ -11,6 +11,6 @@ interface TvApi {
         const val BASE_URL = "https://api.tvmaze.com/"
     }
 
-    @GET(ApiConstants.END_POINT_SHOWS)
+    @GET(ApiConstants.END_POINT_SHOWS + "?page=1")
     suspend fun getTvShows(): Response<List<TvShow>>
 }

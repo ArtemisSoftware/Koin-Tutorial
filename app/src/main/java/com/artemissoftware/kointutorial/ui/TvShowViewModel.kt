@@ -1,19 +1,26 @@
 package com.artemissoftware.kointutorial.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.artemissoftware.kointutorial.api.models.TvShow
 import com.artemissoftware.kointutorial.repository.TvShowRepository
 import kotlinx.coroutines.launch
 
 class TvShowViewModel constructor(private val repository: TvShowRepository) : ViewModel() {
 
-    private val _response = MutableLiveData<List<TvShow>>()
+    private val responseTvShow = MutableLiveData<List<TvShow>>()
 
-    val responseTvShow: LiveData<List<TvShow>>
-        get() = _response
+
+    val current: LiveData<List<TvShow>> =
+        Transformations.map(responseTvShow) { list -> list?.filter { show -> show.status == "Running" } }
+
+    val popular: LiveData<List<TvShow>> =
+        Transformations.map(responseTvShow) { list -> list?.filter { show -> if(show.rating.average != null) {show.rating.average.toDouble() > 8.5 && show.status == "Running"} else false } }
+
+    val upcoming: LiveData<List<TvShow>> =
+        Transformations.map(responseTvShow) { list -> list?.filter { show -> show.status == "To Be Determined" } }
+
+
+
 
     init {
         getAllTvShows()
@@ -22,7 +29,7 @@ class TvShowViewModel constructor(private val repository: TvShowRepository) : Vi
     private fun getAllTvShows() = viewModelScope.launch {
 
         repository.getTvShows().let { response ->
-            _response.postValue(response.body())
+            responseTvShow.postValue(response.body())
         }
     }
 

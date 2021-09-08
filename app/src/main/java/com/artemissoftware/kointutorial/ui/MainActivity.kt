@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
 
     private val tvShowViewModel : TvShowViewModel by viewModel()
     private lateinit var tvShowAdapter: TvShowAdapter
+    private lateinit var popularTvShowAdapter: TvShowAdapter
+    private lateinit var upcomingTvShowAdapter: TvShowAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,11 +23,18 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
 
-        tvShowViewModel.responseTvShow.observe(this, { listTvShows ->
-
+        tvShowViewModel.current.observe(this, { listTvShows ->
             tvShowAdapter.submitList(listTvShows)
-
         })
+
+        tvShowViewModel.popular.observe(this, { listTvShows ->
+            popularTvShowAdapter.submitList(listTvShows)
+        })
+
+        tvShowViewModel.upcoming.observe(this, { listTvShows ->
+            upcomingTvShowAdapter.submitList(listTvShows)
+        })
+
     }
 
 
@@ -35,6 +44,22 @@ class MainActivity : AppCompatActivity() {
 
         rvTvShows.apply {
             adapter = tvShowAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+        }
+
+        popularTvShowAdapter = TvShowAdapter()
+
+        rvPopular.apply {
+            adapter = popularTvShowAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+        }
+
+        upcomingTvShowAdapter = TvShowAdapter()
+
+        rvUpcoming.apply {
+            adapter = upcomingTvShowAdapter
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
         }
