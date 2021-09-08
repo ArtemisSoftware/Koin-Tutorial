@@ -23,16 +23,16 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
 
-        tvShowViewModel.current.observe(this, { listTvShows ->
-            tvShowAdapter.submitList(listTvShows)
+        tvShowViewModel.current.observe(this, { resource ->
+            tvShowAdapter.submitList(resource.data)
         })
 
-        tvShowViewModel.popular.observe(this, { listTvShows ->
-            popularTvShowAdapter.submitList(listTvShows)
+        tvShowViewModel.popular.observe(this, { resource ->
+            popularTvShowAdapter.submitList(resource.data)
         })
 
-        tvShowViewModel.upcoming.observe(this, { listTvShows ->
-            upcomingTvShowAdapter.submitList(listTvShows)
+        tvShowViewModel.upcoming.observe(this, { resource ->
+            upcomingTvShowAdapter.submitList(resource.data)
         })
 
     }
