@@ -32,7 +32,8 @@ class TvShowViewModel constructor(private val repository: TvShowRepository) : Vi
 
         //option 1
 
-        val response = safeApiCall(apiCall = { repository.getTvShows()})
+        val page: Int = (1..10).random()
+        val response = safeApiCall(apiCall = { repository.getTvShows(page.toString())})
 
         if(response is Resource.Success){
             responseTvShow.postValue(response.data!!)
